@@ -22,29 +22,28 @@ class Board {
     }
 
 
-    //returns true if current piece was actually dropped by 1 block
+    //assumes the piece can be dropped
+    //returns true if currentPiece is directly on top of another piece
     boolean drop() {
-        boolean canBeDropped = false;
+        currentPiece.center.y-=1;
+        boolean touching = false;
         for (Coordinate coordinate : currentPiece.getCoordinates()) {
-            if (board[coordinate.x][coordinate.y-1] != null) {canBeDropped = true; break;}
+            if (board[coordinate.x][coordinate.y-1] != null) {touching = true; break;}
         }
-
-        if (canBeDropped) return false;
-        else {
-            currentPiece.center.y-=1;
-            return true;
-        }
+        return touching;
     }
-
 
     void hardDrop() {
-
+        boolean isSpacebarTouch = true;
+        int nowPiece = 123; // 가장 최근의 piece 설정요망.
+        Coordinate coordinate = currentPiece.getCoordinates()[nowPiece];
+        // 이후 spacebar touch 관련 조작 넣어주기. 당장은 true 넣어줬습니다!
+        if(isSpacebarTouch){
+            while(board[coordinate.x][coordinate.y-1] != null){
+                (coordinate.y)--;
+            }
+        }
     }
-
-    void solidifyPiece() {
-
-    }
-
 
     void clearLines(int y, int stackedHeight) {
         ArrayList<Integer> fullList = fullLine(stackedHeight);
@@ -89,8 +88,7 @@ class Board {
     abstract class TetrisPiece {
         Coordinate center;
         int rotation;
-
-        //returns coordinates of all 4 blocks
+        
         abstract Coordinate[] getCoordinates();
 
         void rotate(boolean right) {
