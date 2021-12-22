@@ -9,7 +9,8 @@ class Board {
     TetrisPiece currentPiece;
 
     int height,width;
-    boolean[][] board;
+    PieceType[][] board;
+
 
 
     Board(int height, int width) {
@@ -52,7 +53,9 @@ class Board {
     }
 
 
-
+    static enum PieceType {
+        T, S, Z, L, J, O, I
+    }
 
     abstract class TetrisPiece {
         Coordinate center;
