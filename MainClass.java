@@ -24,8 +24,16 @@ class Board {
         currentPiece.rotate(right);
     }
 
-    void drop() {
 
+    //assumes the piece can be dropped
+    //returns true if currentPiece is directly on top of another piece
+    boolean drop() {
+        currentPiece.center.y-=1;
+        boolean touching = false;
+        for (Coordinate coordinate : currentPiece.getCoordinates()) {
+            if (board[coordinate.x][coordinate.y-1] != null) {touching = true; break;}
+        }
+        return touching;
     }
 
     void hardDrop() {
@@ -61,7 +69,7 @@ class Board {
         Coordinate center;
         int rotation;
         
-        abstract Coordinate[] getRelativeCoordinates();
+        abstract Coordinate[] getCoordinates();
 
         void rotate(boolean right) {
             if (right) rotation = (rotation + 1) % 4;
@@ -72,8 +80,9 @@ class Board {
 
     class TPiece extends TetrisPiece {
         @Override
-        Board.Coordinate[] getRelativeCoordinates() {
+        Board.Coordinate[] getCoordinates() {
             Coordinate[] coordinates = new Coordinate[4];
+
             return coordinates;
         }
     }
