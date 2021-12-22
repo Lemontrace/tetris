@@ -53,7 +53,7 @@ class Board {
             }
             for(int d = delete; d < stackedHeight; d++) {
                 for (int x = 0; x < width; x++) {
-                    board[d + 1][x] = board[d][x];
+                    board[d][x] = board[d+1][x];
                 }
             }
         }
