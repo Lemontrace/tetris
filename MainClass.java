@@ -31,8 +31,24 @@ class Board {
 
     }
 
-    void clearLines() {
+    void clearLines(int y) {
+        if(isFull(height)){
+            for(int x = 0; x < width; x++){
+                board[y][x] = false;
+            }
 
+        }
+    }
+
+    boolean isFull(int height){
+        boolean check = true;
+        for(int x = 0; x < width; x++){
+            if(board[height][x] == false){
+                check = false;
+                break;
+            }
+        }
+        return check;
     }
 
 
