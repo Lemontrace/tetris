@@ -42,42 +42,6 @@ class Board {
 
     }
 
-    void clearLines(int y, int stackedHeight) {
-        ArrayList<Integer> fullList = fullLine(stackedHeight);
-        while(!fullList.isEmpty()){
-            int delete = fullList.remove(0);
-            for(int x = 0; x < width; x++){
-                board[delete][x] = null;
-            }
-            for(int d = delete; d < stackedHeight; d++) {
-                for (int x = 0; x < width; x++) {
-                    board[d][x] = board[d+1][x];
-                }
-            }
-        }
-    }
-
-    ArrayList<Integer> fullLine(int stacked){ // 한방에 처리하기 위한 Integer ArrayList를 반환
-        ArrayList<Integer> fullList = new ArrayList<>();
-        for(int y = 0; y < stacked; y++){
-            if(isFull(y)){
-                fullList.add(y);
-            }
-        }
-        return fullList;
-    }
-
-    boolean isFull(int height){
-        boolean check = true;
-        for(int x = 0; x < width; x++){
-            if(board[height][x] == null){
-                check = false;
-                break;
-            }
-        }
-        return check;
-    }
-
     static enum PieceType {
         T, S, Z, L, J, O, I
     }
