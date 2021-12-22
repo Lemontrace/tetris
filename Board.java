@@ -34,7 +34,12 @@ class Board {
     }
 
     void hardDrop() {
-
+        while(true){
+            boolean drop = drop();
+            if(!drop){
+               break;
+            }
+        }
     }
 
     void clearLines(int y, int stackedHeight) {
