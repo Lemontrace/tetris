@@ -101,13 +101,24 @@ class Board {
             //in all cases, center stays the same
             coordinates[0].x=x;coordinates[0].y=y;
             switch (rotation) {
-                case 0: 
+                case 0: //ㅜ
                     coordinates[1].x=x;coordinates[1].y=y-1;
                     coordinates[2].x=x+1;coordinates[2].y=y;
                     coordinates[3].x=x-1;coordinates[3].y=y;
                     break;
-                case 1:
-            
+                case 1://ㅓ
+                    coordinates[1].x=x-1;coordinates[1].y=y;
+                    coordinates[2].x=x;coordinates[2].y=y+1;
+                    coordinates[3].x=x;coordinates[3].y=y-1;
+                case 2://ㅗ
+                    coordinates[1].x=x;coordinates[1].y=y+1;
+                    coordinates[2].x=x+1;coordinates[2].y=y;
+                    coordinates[3].x=x-1;coordinates[3].y=y;
+                case 3: //ㅏ
+                    coordinates[1].x=x+1;coordinates[1].y=y;
+                    coordinates[2].x=x;coordinates[2].y=y+1;
+                    coordinates[3].x=x;coordinates[3].y=y-1;
+
                 default:
                     throw new IllegalStateException("wrong value for rotation on TetrisPiece instance");
             }
