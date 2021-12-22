@@ -35,12 +35,12 @@ class Board {
 
     void hardDrop() {
         boolean isSpacebarTouch = true;
+        int nowPiece = 123; // 가장 최근의 piece 설정요망.
+        Coordinate coordinate = currentPiece.getCoordinates()[nowPiece];
         // 이후 spacebar touch 관련 조작 넣어주기. 당장은 true 넣어줬습니다!
-        if(isSpacebarTouch){ // drop부분과 hard drop의 차이가 thread로 1초씩 끌어주냐 아니냐 차이일것같아요!
-            for (Coordinate coordinate : currentPiece.getCoordinates()) {
-                if (board[coordinate.x][coordinate.y-1] == null) {
-                    break;
-                }
+        if(isSpacebarTouch){
+            while(board[coordinate.x][coordinate.y-1] != null){
+                (coordinate.y)--;
             }
         }
     }
