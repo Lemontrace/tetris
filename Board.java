@@ -17,14 +17,46 @@ class Board {
         for (int i=0;i<width;i++) for (int j=0;j<height;j++) board[i][j]=null;
     }
 
-    void rotate(boolean right) {
+
+    //tries to add new piece
+    //returns true if new piece was actually added    
+    boolean addPiece(PieceType type, int position) {
+        //create new piece
+        TetrisPiece newPiece;
+        switch(type) {
+            case T:
+                newPiece = new TPiece();
+                newPiece.center = new Coordinate(position,height-1);
+                newPiece.rotation = 0;
+                break;
+            default:
+                throw new IllegalStateException("not implemented");
+        }
+
+        //check if the piece is in a valid position
+
+        boolean canBePlaced = true;
+        for (Coordinate coordinate : newPiece.getCoordinates()) {
+            if (!isAvailable(coordinate)) {canBePlaced = false; break;}
+        }
+
+        //replace current piece
+        if (canBePlaced) currentPiece = newPiece;
+
+
+        return canBePlaced;        
+    }
+
+
+
+    void rotateCurrentPiece(boolean right) {
         currentPiece.rotate(right);
     }
 
 
     //tries to drop current piece by 1 block
     //returns true if current piece was actually dropped by 1 block
-    boolean drop() {
+    boolean dropCurrentPiece() {
         //check if current piece can be dropped by checking 1 block below every block in current piece
         boolean canBeDropped = true;
         for (Coordinate coordinate : currentPiece.getCoordinates()) {
@@ -35,9 +67,9 @@ class Board {
         return canBeDropped;
     }
 
-    void hardDrop() {
+    void hardDropCurrentPiece() {
         while(true){
-            boolean drop = drop();
+            boolean drop = dropCurrentPiece();
             if(!drop){
                break;
             }
@@ -140,7 +172,7 @@ class Board {
             int x=center.x,y=center.y;
 
             //in all cases, center stays the same
-            coordinates[0].x=x;coordinates[0].y=y;
+            coordinates[0]=new Coordinate(x,y);
             switch (rotation) {
                 case 0: //ㅜ
                     coordinates[1].x=x;coordinates[1].y=y-1;
