@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+
+
 class MainClass {
     public static void main(String[] args) {
 
@@ -13,11 +16,12 @@ class Board {
 
 
 
-    Board(int height, int width) {
+    Board(int width, int height) {
         //set height and width
-        this.height=height;this.width=width;
+        this.width=width;this.height=height;
         //initialize board
-        board = new boolean[width][height];
+        board = new PieceType[width][height];
+        for (int i=0;i<width;i++) for (int j=0;j<height;j++) board[i][j]=null;
     }
 
     void rotate(boolean right) {
