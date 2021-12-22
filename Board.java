@@ -22,15 +22,18 @@ class Board {
     }
 
 
-    //assumes the piece can be dropped
-    //returns true if currentPiece is directly on top of another piece
+    //returns true if current piece was actually dropped by 1 block
     boolean drop() {
-        currentPiece.center.y-=1;
-        boolean touching = false;
+        boolean canBeDropped = false;
         for (Coordinate coordinate : currentPiece.getCoordinates()) {
-            if (board[coordinate.x][coordinate.y-1] != null) {touching = true; break;}
+            if (board[coordinate.x][coordinate.y-1] != null) {canBeDropped = true; break;}
         }
-        return touching;
+
+        if (canBeDropped) return false;
+        else {
+            currentPiece.center.y-=1;
+            return true;
+        }
     }
 
     
@@ -109,7 +112,7 @@ class Board {
         @Override
         Board.Coordinate[] getCoordinates() {
             Coordinate[] coordinates = new Coordinate[4];
-            
+
             return coordinates;
         }
     }
