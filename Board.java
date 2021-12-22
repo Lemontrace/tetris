@@ -12,7 +12,7 @@ class Board {
     Board(int width, int height) {
         //set height and width
         this.width=width;this.height=height;
-        //initialize board
+        //initialize board (to be all nulls)
         board = new PieceType[width][height];
         for (int i=0;i<width;i++) for (int j=0;j<height;j++) board[i][j]=null;
     }
@@ -22,6 +22,7 @@ class Board {
     }
 
 
+    //tries to drop current piece by 1 block
     //returns true if current piece was actually dropped by 1 block
     boolean drop() {
         boolean canBeDropped = false;
@@ -113,6 +114,22 @@ class Board {
         Board.Coordinate[] getCoordinates() {
             Coordinate[] coordinates = new Coordinate[4];
 
+            //avoid repetition
+            int x=center.x,y=center.y;
+
+            //in all cases, center stays the same
+            coordinates[0].x=x;coordinates[0].y=y;
+            switch (rotation) {
+                case 0: 
+                    coordinates[1].x=x;coordinates[1].y=y-1;
+                    coordinates[2].x=x+1;coordinates[2].y=y;
+                    coordinates[3].x=x-1;coordinates[3].y=y;
+                    break;
+                case 1:
+            
+                default:
+                    throw new IllegalStateException("wrong value for rotation on TetrisPiece instance");
+            }
             return coordinates;
         }
     }
