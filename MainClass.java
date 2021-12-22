@@ -51,6 +51,14 @@ class Board {
 
     }
 
+    class TPiece extends TetrisPiece {
+        @Override
+        Board.Coordinate[] getRelativeCoordinates() {
+            Coordinate[] coordinates = new Coordinate[4];
+            return coordinates;
+        }
+    }
+
     static class Coordinate {
         int x,y;
 
