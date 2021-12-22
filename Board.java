@@ -25,12 +25,12 @@ class Board {
     //tries to drop current piece by 1 block
     //returns true if current piece was actually dropped by 1 block
     boolean drop() {
-        currentPiece.center.y-=1;
-        boolean touching = false;
+        boolean canBeDropped = true;
         for (Coordinate coordinate : currentPiece.getCoordinates()) {
-            if (board[coordinate.x][coordinate.y-1] != null) {touching = true; break;}
+            if (board[coordinate.x][coordinate.y-1] != null) {canBeDropped = false; break;}
         }
-        return touching;
+        if (canBeDropped) currentPiece.center.y-=1;
+        return canBeDropped;
     }
 
     void hardDrop() {
