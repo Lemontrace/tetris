@@ -36,7 +36,12 @@ class Board {
     }
 
     void hardDrop() {
-
+        while(true){
+            boolean drop = drop();
+            if(!drop){
+               break;
+            }
+        }
     }
 
     boolean isAvailable(Coordinate coordinate) {
