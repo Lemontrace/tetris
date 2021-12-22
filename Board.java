@@ -118,6 +118,12 @@ class Board {
 
     String render() {
         StringBuilder rendered = new StringBuilder();
+
+        //add current piece to board
+        for (Coordinate coordinate : currentPiece.getCoordinates()) {
+            board[coordinate.x][coordinate.y] = currentPiece.getType();
+        }
+
         //render last(top) line first
         for (int line = height-1;line>=0;line--) {
             StringBuilder lineBuilder = new StringBuilder();
@@ -131,6 +137,13 @@ class Board {
             rendered.append(lineBuilder.toString());
         }
         for(int i=0;i<width+2;i++) rendered.append("-");
+
+
+        //remove current piece from board
+        for (Coordinate coordinate : currentPiece.getCoordinates()) {
+            board[coordinate.x][coordinate.y] = null;
+        }
+
         return rendered.toString();
     }
 
@@ -154,6 +167,7 @@ class Board {
         Coordinate center;
         int rotation;
         
+        abstract PieceType getType();
         abstract Coordinate[] getCoordinates();
 
         void rotate(boolean right) {
@@ -164,6 +178,12 @@ class Board {
     }
 
     class TPiece extends TetrisPiece {
+
+        @Override
+        Board.PieceType getType() {
+            return PieceType.T;
+        }
+
         @Override
         Board.Coordinate[] getCoordinates() {
             Coordinate[] coordinates = new Coordinate[4];
