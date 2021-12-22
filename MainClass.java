@@ -1,22 +1,42 @@
-import java.util.ArrayList;
-
 class MainClass {
     public static void main(String[] args) {
-        
+
     }
 }
 
 class Board {
 
+    TetrisPiece currentPiece;
+
     int height,width;
-    ArrayList<TetrisPiece> pieces = new ArrayList<TetrisPiece>(); 
     boolean[][] board;
 
 
     Board(int height, int width) {
+        //set height and width
         this.height=height;this.width=width;
+        //initialize board
         board = new boolean[width][height];
     }
+
+    void rotate(boolean right) {
+
+    }
+
+    void drop() {
+
+    }
+
+    void hardDrop() {
+
+    }
+
+    void clearLines() {
+        
+    }
+
+
+
 
     abstract class TetrisPiece {
         Coordinate coordinate;
@@ -30,10 +50,5 @@ class Board {
             this.x=x;this.y=y;
         }
     }
-
-    class TPiece {
-
-    }
-
 
 }
