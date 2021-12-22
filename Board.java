@@ -77,7 +77,7 @@ class Board {
     }
 
     boolean isAvailable(Coordinate coordinate) {
-        return coordinate.x>=0&&coordinate.x<width&&coordinate.y>=0&&coordinate.y<height&&(board[coordinate.x][coordinate.y] != null);
+        return coordinate.x>=0&&coordinate.x<width&&coordinate.y>=0&&coordinate.y<height&&(board[coordinate.x][coordinate.y] == null);
     }
 
     void clearLines(int y, int stackedHeight) {
@@ -144,6 +144,7 @@ class Board {
             board[coordinate.x][coordinate.y] = null;
         }
 
+
         return rendered.toString();
     }
 
@@ -203,14 +204,17 @@ class Board {
                     coordinates[1] = new Coordinate(x-1,y); // x-1,y
                     coordinates[2] = new Coordinate(x,y+1); // x,y+1
                     coordinates[3] = new Coordinate(x,y-1); // x,y-1
+                    break;
                 case 2://ㅗ
                     coordinates[1] = new Coordinate(x,y+1); // x, y+1
                     coordinates[2] = new Coordinate(x+1,y);// x+1,y
                     coordinates[3] = new Coordinate(x-1,y); // x-1,y
+                    break;
                 case 3: //ㅏ
                     coordinates[1] = new Coordinate(x+1,y); // x+1,y
                     coordinates[2] = new Coordinate(x,y+1); // x, y+1
                     coordinates[3] = new Coordinate(x,y-1);// x, y-1
+                    break;
 
                 default:
                     throw new IllegalStateException("wrong value for rotation on TetrisPiece instance");
