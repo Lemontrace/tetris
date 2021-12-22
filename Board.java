@@ -175,22 +175,22 @@ class Board {
             coordinates[0]=new Coordinate(x,y);
             switch (rotation) {
                 case 0: //ㅜ
-                    coordinates[1].x=x;coordinates[1].y=y-1;
-                    coordinates[2].x=x+1;coordinates[2].y=y;
-                    coordinates[3].x=x-1;coordinates[3].y=y;
+                    coordinates[1] = new Coordinate(x,y-1); // x,y-1
+                    coordinates[2] = new Coordinate(x+1,y); // x+1,y
+                    coordinates[3] = new Coordinate(x-1,y); // x-1,y
                     break;
                 case 1://ㅓ
-                    coordinates[1].x=x-1;coordinates[1].y=y;
-                    coordinates[2].x=x;coordinates[2].y=y+1;
-                    coordinates[3].x=x;coordinates[3].y=y-1;
+                    coordinates[1] = new Coordinate(x-1,y); // x-1,y
+                    coordinates[2] = new Coordinate(x,y+1); // x,y+1
+                    coordinates[3] = new Coordinate(x,y-1); // x,y-1
                 case 2://ㅗ
-                    coordinates[1].x=x;coordinates[1].y=y+1;
-                    coordinates[2].x=x+1;coordinates[2].y=y;
-                    coordinates[3].x=x-1;coordinates[3].y=y;
+                    coordinates[1] = new Coordinate(x,y+1); // x, y+1
+                    coordinates[2] = new Coordinate(x+1,y);// x+1,y
+                    coordinates[3] = new Coordinate(x-1,y); // x-1,y
                 case 3: //ㅏ
-                    coordinates[1].x=x+1;coordinates[1].y=y;
-                    coordinates[2].x=x;coordinates[2].y=y+1;
-                    coordinates[3].x=x;coordinates[3].y=y-1;
+                    coordinates[1] = new Coordinate(x+1,y); // x+1,y
+                    coordinates[2] = new Coordinate(x,y+1); // x, y+1
+                    coordinates[3] = new Coordinate(x,y-1);// x, y-1
 
                 default:
                     throw new IllegalStateException("wrong value for rotation on TetrisPiece instance");
