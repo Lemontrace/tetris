@@ -84,6 +84,36 @@ class Board {
         return check;
     }
 
+    String render() {
+        StringBuilder rendered = new StringBuilder();
+        //render last(top) line first
+        for (int line = height-1;line>=0;line--) {
+            StringBuilder lineBuilder = new StringBuilder();
+            lineBuilder.append("|");
+            for (int i=0;i<width;i++) {
+                String blockString = getBlockString(board[i][line]);
+                lineBuilder.append(blockString);
+            }
+            lineBuilder.append("|\n");
+
+            rendered.append(lineBuilder.toString());
+        }
+        for(int i=0;i<width+2;i++) rendered.append("-");
+        return rendered.toString();
+    }
+
+    private String getBlockString(PieceType type) {
+        if (type==null) return " ";
+        switch (type) {
+            case T:
+                return "T";
+            default:
+                return "?";
+        }
+    }
+
+
+
     static enum PieceType {
         T, S, Z, L, J, O, I
     }
