@@ -25,9 +25,11 @@ class Board {
     //tries to drop current piece by 1 block
     //returns true if current piece was actually dropped by 1 block
     boolean drop() {
+        //check if current piece can be dropped by checking 1 block below every block in current piece
         boolean canBeDropped = true;
         for (Coordinate coordinate : currentPiece.getCoordinates()) {
-            if (board[coordinate.x][coordinate.y-1] != null) {canBeDropped = false; break;}
+            coordinate.y-=1; //check block below
+            if (!isAvailable(coordinate)) {canBeDropped = false; break;}
         }
         if (canBeDropped) currentPiece.center.y-=1;
         return canBeDropped;
@@ -35,6 +37,10 @@ class Board {
 
     void hardDrop() {
 
+    }
+
+    boolean isAvailable(Coordinate coordinate) {
+        return coordinate.x>=0&&coordinate.x<width&&coordinate.y>=0&&coordinate.y<height&&(board[coordinate.x][coordinate.y] != null);
     }
 
     void clearLines(int y, int stackedHeight) {
@@ -128,6 +134,10 @@ class Board {
 
     static class Coordinate {
         int x,y;
+
+        Coordinate(Coordinate coordinate) {
+            this.x=coordinate.x;this.y=coordinate.y;
+        }
 
         Coordinate(int x,int y) {
             this.x=x;this.y=y;
