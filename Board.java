@@ -42,7 +42,7 @@ class Board {
         while(!fullList.isEmpty()){
             int delete = fullList.remove(0);
             for(int x = 0; x < width; x++){
-                board[delete][x] = false;
+                board[delete][x] = null;
             }
             for(int d = delete; d < stackedHeight; d++) {
                 for (int x = 0; x < width; x++) {
@@ -65,7 +65,7 @@ class Board {
     boolean isFull(int height){
         boolean check = true;
         for(int x = 0; x < width; x++){
-            if(board[height][x] == false){
+            if(board[height][x] == null){
                 check = false;
                 break;
             }
