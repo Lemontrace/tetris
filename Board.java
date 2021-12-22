@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Board {
 
     TetrisPiece currentPiece;
